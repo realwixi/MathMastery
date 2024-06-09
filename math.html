@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Mastery Assistant</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #calculator {
+            width: 300px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        input[type="number"] {
+            width: 100px;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        #solution {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="calculator">
+        <h1>Math Mastery Assistant</h1>
+        <label for="num1">Number 1:</label>
+        <input type="number" id="num1"><br>
+        <label for="operator">Operation:</label>
+        <select id="operator">
+            <option value="add">+</option>
+            <option value="subtract">-</option>
+            <option value="multiply">*</option>
+            <option value="divide">/</option>
+        </select><br>
+        <label for="num2">Number 2:</label>
+        <input type="number" id="num2"><br>
+        <button onclick="calculate()">Calculate</button>
+        <div id="solution"></div>
+    </div>
+
+    <script>
+        function calculate() {
+            // Get input values
+            let num1 = parseFloat(document.getElementById('num1').value);
+            let num2 = parseFloat(document.getElementById('num2').value);
+            let operator = document.getElementById('operator').value;
+
+            // Perform calculation based on the selected operator
+            let result;
+            let operatorSymbol;
+            switch (operator) {
+                case 'add':
+                    result = num1 + num2;
+                    operatorSymbol = '+';
+                    break;
+                case 'subtract':
+                    result = num1 - num2;
+                    operatorSymbol = '-';
+                    break;
+                case 'multiply':
+                    result = num1 * num2;
+                    operatorSymbol = '*';
+                    break;
+                case 'divide':
+                    if (num2 === 0) {
+                        document.getElementById('solution').innerHTML = 'Error: Cannot divide by zero';
+                        return;
+                    }
+                    result = num1 / num2;
+                    operatorSymbol = '/';
+                    break;
+                default:
+                    document.getElementById('solution').innerHTML = 'Error: Invalid operator';
+                    return;
+            }
+
+            // Display the solution
+            document.getElementById('solution').innerHTML = `${num1} ${operatorSymbol} ${num2} = ${result}`;
+        }
+    </script>
+<output>
+</body>
+</html>
